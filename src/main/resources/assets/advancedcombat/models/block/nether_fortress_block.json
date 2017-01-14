@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/cube_all",
+    "textures": {
+		"all": "advancedcombat:blocks/nether_fortress_block"
+    }
+}

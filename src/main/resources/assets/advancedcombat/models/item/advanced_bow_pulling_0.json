@@ -1,0 +1,6 @@
+{
+    "parent": "advancedcombat:item/advanced_bow",
+    "textures": {
+        "layer0": "advancedcombat:items/advanced_bow_pulling_0"
+    }
+}

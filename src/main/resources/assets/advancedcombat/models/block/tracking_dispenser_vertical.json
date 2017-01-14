@@ -1,0 +1,7 @@
+{
+    "parent": "block/orientable_vertical",
+    "textures": {
+        "front": "advancedcombat:blocks/tracking_dispenser_vertical",
+        "side": "advancedcombat:blocks/tracking_dispenser_top"
+    }
+}

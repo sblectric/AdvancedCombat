@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "advancedcombat:items/advanced_nether_star_sword"
+    }
+}

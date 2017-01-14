@@ -1,0 +1,8 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "advancedcombat:blocks/tracking_dispenser_top",
+        "front": "advancedcombat:blocks/tracking_dispenser_horizontal",
+        "side": "advancedcombat:blocks/tracking_dispenser_side"
+    }
+}
