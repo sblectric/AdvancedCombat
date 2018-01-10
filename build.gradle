@@ -14,11 +14,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-<<<<<<< HEAD
 version = "1.1.2"
-=======
-version = "1.0.3"
->>>>>>> origin/master
 group= "com.sblectric.advancedcombat" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "advancedcombat"
 
@@ -30,7 +26,6 @@ repositories {
 }
 
 minecraft {
-<<<<<<< HEAD
     version = "1.12.2-14.23.0.2489"
     runDir = "run"
     useDepAts = true
@@ -38,17 +33,11 @@ minecraft {
 }
 
 dependencies {
-	deobfCompile "mezz.jei:jei_1.12.2:4.7.10.98"
-=======
+    deobfCompile "mezz.jei:jei_1.12.2:4.7.10.98"
     version = "1.11.2-13.20.1.2476"
     runDir = "run"
     useDepAts = true
     mappings = "snapshot_20170607"
-}
-
-dependencies {
-	deobfCompile "mezz.jei:jei_1.11.2:4.5.1.296"
->>>>>>> origin/master
 }
 
 processResources
