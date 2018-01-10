@@ -1,8 +1,10 @@
 package com.advancedcombat.util;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.advancedcombat.crafting.RecipeEnchantmentUpgrade;
 
@@ -11,7 +13,8 @@ import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.fml.common.registry.GameData;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 public class ACUtils {
 	
@@ -36,13 +39,26 @@ public class ACUtils {
 	public static List<ItemStack> getAllEnchantables(RecipeEnchantmentUpgrade u) {
 		if(!enchCache.containsKey(u)) {
 			JointList<ItemStack> list = new JointList();
-			Iterable<Item> allItems = GameData.getItemRegistry().typeSafeIterable();
-			for(Item i : allItems) {
-				ItemStack stack = new ItemStack(i);
+			
+			// old method
+//			Iterable<Item> allItems = GameData.getItemRegistry().typeSafeIterable();
+//			for(Item i : allItems) {
+//				ItemStack stack = new ItemStack(i);
+//				if(u.getEnchantment().canApply(stack)) {
+//					list.add(stack);
+//				}
+//			}
+			
+			// new method
+			Set<ResourceLocation> itemNames = Item.REGISTRY.getKeys();
+			for(ResourceLocation itemName : itemNames) {
+				Item item = Item.REGISTRY.getObject(itemName);
+				ItemStack stack = new ItemStack(item);
 				if(u.getEnchantment().canApply(stack)) {
 					list.add(stack);
 				}
 			}
+			
 			enchCache.put(u, list);
 		}
 		return enchCache.get(u);
@@ -82,6 +98,26 @@ public class ACUtils {
     /** Does a given list of ItemStacks contain comp? Not amount sensitive! */
     public static boolean doesItemStackListContain(List<ItemStack> list, Block comp, boolean remove) {
     	return doesItemStackListContain(list, new ItemStack(comp), remove);
+    }
+    
+    /** Find a method with multiple method names (old reflection helper) */
+    public static <E> Method findMethod(Class<? super E> clazz, E instance, String[] methodNames, Class<?>... methodTypes)
+    {
+        Exception failed = null;
+        for (String methodName : methodNames)
+        {
+            try
+            {
+                Method m = clazz.getDeclaredMethod(methodName, methodTypes);
+                m.setAccessible(true);
+                return m;
+            }
+            catch (Exception e)
+            {
+                failed = e;
+            }
+        }
+        throw new ReflectionHelper.UnableToFindMethodException(methodNames, failed);
     }
 
 }

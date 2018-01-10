@@ -10,15 +10,15 @@ import com.advancedcombat.util.JointList;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.init.Blocks;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public abstract class RecipeEnchantmentUpgrade implements IRecipe {
+public abstract class RecipeEnchantmentUpgrade extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
 	
 	private static List<RecipeEnchantmentUpgrade> allUpgrades = new JointList();
 	protected ItemStack upgrade;
@@ -125,9 +125,15 @@ public abstract class RecipeEnchantmentUpgrade implements IRecipe {
 		}
 	}
 
+
 	@Override
-	public int getRecipeSize() {
-		return 2;
+	public boolean canFit(int width, int height) {
+		return width >= 2 && height >= 2;
+	}
+	
+	@Override
+	public boolean isDynamic() {
+		return true; // don't show in the recipe book!
 	}
 
 	@Override

@@ -3,6 +3,8 @@ package com.advancedcombat.crafting;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Nonnull;
+
 import com.advancedcombat.util.ACUtils;
 
 import net.minecraft.enchantment.Enchantment;
@@ -18,7 +20,7 @@ public class RecipeFlexibleUpgrade extends RecipeItemEnchantmentUpgrade {
 	
 	/** Gets an upgradeable stack */
 	@Override
-	public ItemStack getUpgradableStack(List<ItemStack> s) {
+	public @Nonnull ItemStack getUpgradableStack(List<ItemStack> s) {
 		if(ACUtils.doesItemStackListContain(s, upgrade, true)) {
 			ItemStack toUpgrade = s.get(0);
 			if(enchant.canApply(toUpgrade)) { // no sword needed now!
@@ -27,14 +29,14 @@ public class RecipeFlexibleUpgrade extends RecipeItemEnchantmentUpgrade {
 					if(i == enchant) {
 						int level = activeEnchs.get(i);
 						if(level >= maxLevel) {
-							return null;
+							return ItemStack.EMPTY;
 						}
 					}
 				}
 				return toUpgrade.copy();
 			}
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 	
 

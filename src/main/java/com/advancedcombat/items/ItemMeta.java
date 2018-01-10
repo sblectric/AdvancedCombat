@@ -1,5 +1,6 @@
 package com.advancedcombat.items;
 
+import com.advancedcombat.creativetabs.ACCreativeTabs;
 import com.advancedcombat.util.JointList;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -32,9 +33,11 @@ public class ItemMeta extends ItemBasic {
 	
 	/** Get the sub items as a list for the creative tab */
 	@Override
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList sub) {
-		for(int meta = 0; meta < nSubItems; meta++) {
-			sub.add(new ItemStack(item, 1, meta));
+	public void getSubItems(CreativeTabs tab, NonNullList sub) {
+		if(this.isInCreativeTab(tab)) {
+			for(int meta = 0; meta < nSubItems; meta++) {
+				sub.add(new ItemStack(this, 1, meta));
+			}
 		}
 	}
 	

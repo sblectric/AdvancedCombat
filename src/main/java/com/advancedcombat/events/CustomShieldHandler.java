@@ -39,7 +39,7 @@ public class CustomShieldHandler {
             if (vec3d != null) {
                 Vec3d vec3d1 = owner.getLook(1.0F);
                 Vec3d vec3d2 = vec3d.subtractReverse(new Vec3d(owner.posX, owner.posY, owner.posZ)).normalize();
-                vec3d2 = new Vec3d(vec3d2.xCoord, 0.0D, vec3d2.zCoord);
+                vec3d2 = new Vec3d(vec3d2.x, 0.0D, vec3d2.z);
 
                 if (vec3d2.dotProduct(vec3d1) < 0.0D) {
                     return true;

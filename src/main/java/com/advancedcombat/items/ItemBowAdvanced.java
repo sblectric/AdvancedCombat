@@ -102,7 +102,7 @@ public class ItemBowAdvanced extends ItemBow implements IItemAdvanced {
 						// 50% faster arrows
 						ItemArrow itemarrow = (ItemArrow)((ItemArrow)(itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : Items.ARROW));
 						EntityArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, entityplayer);
-						entityarrow.setAim(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 4.5F, 1.0F);
+						entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 4.5F, 1.0F);
 
 						// always critical
 						entityarrow.setIsCritical(true);

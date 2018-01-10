@@ -47,8 +47,8 @@ public class ArmorHandler {
 			if(inst.getModifier(knockbackID) == null) inst.applyModifier(mod);
 
 			// wither thorns
-			if(e.getSource().getEntity() != null && e.getSource().getEntity() instanceof EntityLivingBase) {
-				EntityLivingBase attacker = (EntityLivingBase)e.getSource().getEntity();
+			if(e.getSource().getTrueSource() != null && e.getSource().getTrueSource() instanceof EntityLivingBase) {
+				EntityLivingBase attacker = (EntityLivingBase)e.getSource().getTrueSource();
 				attacker.addPotionEffect(new PotionEffect(MobEffects.WITHER, armorCount * 20, armorCount > 2 ? 1 : 0));
 			}
 

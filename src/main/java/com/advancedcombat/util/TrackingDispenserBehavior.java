@@ -39,7 +39,7 @@ public abstract class TrackingDispenserBehavior {
 		ents.sort(new EntityDistanceSorter(pos));
 		for(EntityLivingBase e : ents) {
 			if(canEntityBeSeen(e, pos)) {
-				return new Vec3d(e.posX - pos2.xCoord, e.posY - pos2.yCoord, e.posZ - pos2.zCoord).normalize();
+				return new Vec3d(e.posX - pos2.x, e.posY - pos2.y, e.posZ - pos2.z).normalize();
 			}
 		}
 		return null;
@@ -49,10 +49,10 @@ public abstract class TrackingDispenserBehavior {
 	private boolean canEntityBeSeen(Entity e, BlockPos pos) {
 		if(!(e instanceof EntityPlayer && ((EntityPlayer)e).capabilities.disableDamage)) {
 		Vec3d pos2 = new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
-		return e.world.rayTraceBlocks(new Vec3d(pos2.xCoord + 1, pos2.yCoord, pos2.zCoord + 0), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null || 
-				e.world.rayTraceBlocks(new Vec3d(pos2.xCoord + 0, pos2.yCoord, pos2.zCoord + 1), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null || 
-				e.world.rayTraceBlocks(new Vec3d(pos2.xCoord - 1, pos2.yCoord, pos2.zCoord + 0), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null || 
-				e.world.rayTraceBlocks(new Vec3d(pos2.xCoord + 0, pos2.yCoord, pos2.zCoord - 1), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null; 
+		return e.world.rayTraceBlocks(new Vec3d(pos2.x + 1, pos2.y, pos2.z + 0), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null || 
+				e.world.rayTraceBlocks(new Vec3d(pos2.x + 0, pos2.y, pos2.z + 1), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null || 
+				e.world.rayTraceBlocks(new Vec3d(pos2.x - 1, pos2.y, pos2.z + 0), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null || 
+				e.world.rayTraceBlocks(new Vec3d(pos2.x + 0, pos2.y, pos2.z - 1), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null; 
 		} else {
 			return false;
 		}
@@ -74,9 +74,9 @@ public abstract class TrackingDispenserBehavior {
 	        Vec3d pos2 = new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
 	        Vec3d dir = this.getNearestTargetDirection(world, pos);
 	        if(dir == null) return null;
-	        IPosition ipos = new PositionImpl(pos2.xCoord + dir.xCoord * .75, pos2.yCoord + dir.yCoord * .75, pos2.zCoord + dir.zCoord * .75);
+	        IPosition ipos = new PositionImpl(pos2.x + dir.x * .75, pos2.y + dir.y * .75, pos2.z + dir.z * .75);
 	        IProjectile iproj = this.getProjectileEntity(standard, world, ipos, stack);
-	        iproj.setThrowableHeading(dir.xCoord, dir.yCoord + 0.1F, dir.zCoord, 
+	        iproj.shoot(dir.x, dir.y + 0.1F, dir.z, 
 	        		this.getProjectileVelocity(standard), this.getProjectileInaccuracy(standard));
 	        world.spawnEntity((Entity)iproj);
 	        stack.splitStack(1);
@@ -85,7 +85,7 @@ public abstract class TrackingDispenserBehavior {
 		
 		/** Get the projectile entity via reflection */
 		private IProjectile getProjectileEntity(BehaviorProjectileDispense standard, World world, IPosition pos, ItemStack stack) {
-			Method m = ReflectionHelper.findMethod(BehaviorProjectileDispense.class, standard, new String[]{"getProjectileEntity", "func_82499_a"}, 
+			Method m = ACUtils.findMethod(BehaviorProjectileDispense.class, standard, new String[]{"getProjectileEntity", "func_82499_a"}, 
 					World.class, IPosition.class, ItemStack.class);
 			try {
 				return (IProjectile)m.invoke(standard, world, pos, stack);
@@ -97,7 +97,7 @@ public abstract class TrackingDispenserBehavior {
 		
 		/** Get the projectile velocity via reflection */
 		private float getProjectileVelocity(BehaviorProjectileDispense standard) {
-			Method m = ReflectionHelper.findMethod(BehaviorProjectileDispense.class, standard, new String[]{"getProjectileVelocity", "func_82500_b"});
+			Method m = ACUtils.findMethod(BehaviorProjectileDispense.class, standard, new String[]{"getProjectileVelocity", "func_82500_b"});
 			try {
 				return (float)m.invoke(standard);
 			} catch (Exception e) {
@@ -108,7 +108,7 @@ public abstract class TrackingDispenserBehavior {
 		
 		/** Get the projectile inaccuracy via reflection */
 		private float getProjectileInaccuracy(BehaviorProjectileDispense standard) {
-			Method m = ReflectionHelper.findMethod(BehaviorProjectileDispense.class, standard, new String[]{"getProjectileInaccuracy", "func_82498_a"});
+			Method m = ACUtils.findMethod(BehaviorProjectileDispense.class, standard, new String[]{"getProjectileInaccuracy", "func_82498_a"});
 			try {
 				return (float)m.invoke(standard);
 			} catch (Exception e) {
@@ -129,14 +129,14 @@ public abstract class TrackingDispenserBehavior {
 	        Vec3d pos2 = new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
 	        Vec3d dir = this.getNearestTargetDirection(world, pos);
 	        if(dir == null) return null;
-	        IPosition ipos = new PositionImpl(pos2.xCoord + dir.xCoord * .75, pos2.yCoord + dir.yCoord * .75, pos2.zCoord + dir.zCoord * .75);
+	        IPosition ipos = new PositionImpl(pos2.x + dir.x * .75, pos2.y + dir.y * .75, pos2.z + dir.z * .75);
             double d0 = ipos.getX();
             double d1 = ipos.getY();
             double d2 = ipos.getZ();
             Random random = world.rand;
-            double d3 = random.nextGaussian() * 0.05D + dir.xCoord;
-            double d4 = random.nextGaussian() * 0.05D + dir.yCoord;
-            double d5 = random.nextGaussian() * 0.05D + dir.zCoord;
+            double d3 = random.nextGaussian() * 0.05D + dir.x;
+            double d4 = random.nextGaussian() * 0.05D + dir.y;
+            double d5 = random.nextGaussian() * 0.05D + dir.z;
             world.spawnEntity(new EntitySmallFireball(world, d0, d1, d2, d3, d4, d5));
             stack.splitStack(1);
             return stack;

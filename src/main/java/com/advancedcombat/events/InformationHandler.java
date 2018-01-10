@@ -8,8 +8,11 @@ import com.advancedcombat.config.ACConfig;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /** Displays useful information in various ways */
+@SideOnly(Side.CLIENT)
 public class InformationHandler {
 
 	/** Show item damages in their tooltips */
@@ -21,7 +24,7 @@ public class InformationHandler {
 				int maxDamage = e.getItemStack().getMaxDamage();
 				int currentDamage = e.getItemStack().getItemDamage();
 				List<String> t = e.getToolTip();
-				if(e.isShowAdvancedItemTooltips() && currentDamage > 0) { // remove the vanilla indicator
+				if(e.getFlags().isAdvanced() && currentDamage > 0) { // remove the vanilla indicator
 					Iterator<String> it = t.iterator();
 					while(it.hasNext()) {
 						String str = it.next();

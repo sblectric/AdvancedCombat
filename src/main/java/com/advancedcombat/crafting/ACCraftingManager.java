@@ -21,77 +21,72 @@ import net.minecraftforge.oredict.RecipeSorter.Category;
 
 public class ACCraftingManager {
 	
-	public static void mainRegistry() {
-		addOreDictEntries();
-		addCraftingRecipes();
-	}
-	
 	// tiers of upgrades
 	public static final int TIER_1 = 0;
 	public static final int TIER_2 = 1;
 	
-	private static void addOreDictEntries() {
+	public static void addOreDictEntries() {
 		OreDictionary.registerOre("blockNetherStar", new ItemStack(ACBlocks.netherStarBlock));
 		OreDictionary.registerOre("skullSkeleton", new ItemStack(Items.SKULL, 1, 0));
 		OreDictionary.registerOre("skullSkeleton", new ItemStack(Items.SKULL, 1, 1));
 	}
 	
-	private static void addCraftingRecipes() {
+	public static void addCraftingRecipes() {
 		// blocks
-		RecipeHelper.addShapedOreRecipe(new ItemStack(ACBlocks.advancedStone, 1), "IXI","XIX","IXI", 'X',StackHelper.anyStone, 'I',"cobblestone");
-		GameRegistry.addRecipe(new ItemStack(ACBlocks.netherStarBlock, 1), "XXX","XXX","XXX", 'X',Items.NETHER_STAR);
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.NETHER_STAR, 9), new ItemStack(ACBlocks.netherStarBlock, 1));
+		RecipeHelper.addShapedRecipe(new ItemStack(ACBlocks.advancedStone, 1), "IXI","XIX","IXI", 'X',StackHelper.anyStone, 'I',"cobblestone");
+		RecipeHelper.addShapedRecipe(new ItemStack(ACBlocks.netherStarBlock, 1), "XXX","XXX","XXX", 'X',Items.NETHER_STAR);
+		RecipeHelper.addShapelessRecipe(new ItemStack(Items.NETHER_STAR, 9), new ItemStack(ACBlocks.netherStarBlock, 1));
 		
 		// advanced nether brick
-		RecipeHelper.addShapedOreRecipe(new ItemStack(ACBlocks.netherFortressBlock), "IXI","XIX","IXI", 'X',Blocks.IRON_BARS, 'I',Blocks.NETHER_BRICK);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(ACBlocks.reinforcedObsidian), "IXI","XIX","IXI", 'X',ACBlocks.advancedStone, 'I',Blocks.OBSIDIAN);
+		RecipeHelper.addShapedRecipe(new ItemStack(ACBlocks.netherFortressBlock), "IXI","XIX","IXI", 'X',Blocks.IRON_BARS, 'I',Blocks.NETHER_BRICK);
+		RecipeHelper.addShapedRecipe(new ItemStack(ACBlocks.reinforcedObsidian), "IXI","XIX","IXI", 'X',ACBlocks.advancedStone, 'I',Blocks.OBSIDIAN);
 		
 		// advanced bow
-		if(ACConfig.enableAdvancedBow) RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.advancedBow), "XIX","XAX","XIX", 
+		if(ACConfig.enableAdvancedBow) RecipeHelper.addShapedRecipe(new ItemStack(ACItems.advancedBow), "XIX","XAX","XIX", 
 				'X',"logWood", 'I',"blockIron", 'A',Items.BOW);
 		
 		// advanced shield
-		if(ACConfig.enableAdvancedShield) RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.advancedShield), "XIX","XAX","XIX", 
+		if(ACConfig.enableAdvancedShield) RecipeHelper.addShapedRecipe(new ItemStack(ACItems.advancedShield), "XIX","XAX","XIX", 
 				'X',"logWood", 'I',"blockIron", 'A',Items.SHIELD);
 		
 		// tracking dispenser
-		if(ACConfig.enableTrackingDispenser) RecipeHelper.addShapedOreRecipe(new ItemStack(ACBlocks.trackingDispenser), "XCX","RAR","XBX", 
+		if(ACConfig.enableTrackingDispenser) RecipeHelper.addShapedRecipe(new ItemStack(ACBlocks.trackingDispenser), "XCX","RAR","XBX", 
 				'X',Blocks.TRIPWIRE_HOOK, 'C',Items.COMPARATOR, 'R',"dustRedstone", 'B',"blockRedstone", 'A',Blocks.DISPENSER);
 		
 		// wooden armor
 		if(ACConfig.enableWoodenArmor) {
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.woodenHelm), "XXX","X X", 'X',"logWood");
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.woodenChest), "X X","XXX","XXX", 'X',"logWood");
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.woodenLegs), "XXX","X X","X X", 'X',"logWood");
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.woodenBoots), "X X","X X", 'X',"logWood");
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.woodenHelm), "XXX","X X", 'X',"logWood");
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.woodenChest), "X X","XXX","XXX", 'X',"logWood");
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.woodenLegs), "XXX","X X","X X", 'X',"logWood");
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.woodenBoots), "X X","X X", 'X',"logWood");
 		}
 		
 		// stone armor
 		if(ACConfig.enableStoneArmor) {
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.stoneHelm), "AXA","X X", 'X',"stone", 'A',ACBlocks.advancedStone);
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.stoneChest), "X X","XAX","XAX", 'X',"stone", 'A',ACBlocks.advancedStone);
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.stoneLegs), "AXA","X X","X X", 'X',"stone", 'A',ACBlocks.advancedStone);
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.stoneBoots), "A A","X X", 'X',"stone", 'A',ACBlocks.advancedStone);
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.stoneHelm), "AXA","X X", 'X',"stone", 'A',ACBlocks.advancedStone);
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.stoneChest), "X X","XAX","XAX", 'X',"stone", 'A',ACBlocks.advancedStone);
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.stoneLegs), "AXA","X X","X X", 'X',"stone", 'A',ACBlocks.advancedStone);
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.stoneBoots), "A A","X X", 'X',"stone", 'A',ACBlocks.advancedStone);
 		}
 		
 		// nether fortress armor
 		if(ACConfig.enableNetherArmor) {
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.netherHelm),
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.netherHelm),
 					"AXA","F F", 'X',Blocks.NETHER_BRICK, 'A',ACBlocks.netherFortressBlock, 'F',Blocks.NETHER_BRICK_FENCE);
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.netherChest),
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.netherChest),
 					"F F","XAX","XAX", 'X',Blocks.NETHER_BRICK, 'A',ACBlocks.netherFortressBlock, 'F',Blocks.NETHER_BRICK_FENCE);
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.netherLegs), "AXA","X X","F F", 
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.netherLegs), "AXA","X X","F F", 
 					'X',Blocks.NETHER_BRICK, 'A',ACBlocks.netherFortressBlock, 'F',Blocks.NETHER_BRICK_FENCE);
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.netherBoots), "A A","F F", 
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.netherBoots), "A A","F F", 
 					'A',ACBlocks.netherFortressBlock, 'F',Blocks.NETHER_BRICK_FENCE);
 		}
 		
 		// obsidian armor
 		if(ACConfig.enableObsidianArmor) {
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.obsidianHelm), "AXA","X X", 'X',Blocks.OBSIDIAN, 'A',ACBlocks.reinforcedObsidian);
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.obsidianChest), "X X","XAX","XAX", 'X',Blocks.OBSIDIAN, 'A',ACBlocks.reinforcedObsidian);
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.obsidianLegs), "AXA","X X","X X", 'X',Blocks.OBSIDIAN, 'A',ACBlocks.reinforcedObsidian);
-			RecipeHelper.addShapedOreRecipe(new ItemStack(ACItems.obsidianBoots), "A A","X X", 'X',Blocks.OBSIDIAN, 'A',ACBlocks.reinforcedObsidian);
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.obsidianHelm), "AXA","X X", 'X',Blocks.OBSIDIAN, 'A',ACBlocks.reinforcedObsidian);
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.obsidianChest), "X X","XAX","XAX", 'X',Blocks.OBSIDIAN, 'A',ACBlocks.reinforcedObsidian);
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.obsidianLegs), "AXA","X X","X X", 'X',Blocks.OBSIDIAN, 'A',ACBlocks.reinforcedObsidian);
+			RecipeHelper.addShapedRecipe(new ItemStack(ACItems.obsidianBoots), "A A","X X", 'X',Blocks.OBSIDIAN, 'A',ACBlocks.reinforcedObsidian);
 		}
 		
 		// items
@@ -200,19 +195,19 @@ public class ACCraftingManager {
 		// swords
 		ItemStack emeraldBase = GameRegistry.makeItemStack(ACConfig.emeraldSwordBase, 0, 1, null);
 		if(emeraldBase == null) emeraldBase = new ItemStack(Items.GOLDEN_SWORD);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(Swords.advancedWoodenSword, 1), "XXX","XIX","XXX", 'X',"logWood", 'I',Items.WOODEN_SWORD);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(Swords.advancedStoneSword, 1), "XXX","XIX","XXX", 'X',ACBlocks.advancedStone, 'I',Items.STONE_SWORD);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(Swords.advancedIronSword, 1), "XXX","XIX","XXX", 'X',"blockIron", 'I',Items.IRON_SWORD);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(Swords.advancedGoldenSword, 1), "XXX","XIX","XXX", 'X',"blockGold", 'I',Items.GOLDEN_SWORD);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(Swords.advancedEmeraldSword, 1), "XXX","XIX","XXX", 'X',"blockEmerald", 'I',emeraldBase);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(Swords.advancedDiamondSword, 1), "XXX","XIX","XXX", 'X',"blockDiamond", 'I',Items.DIAMOND_SWORD);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(Swords.netherStarSword, 1), "X","X","I", 'X',Items.NETHER_STAR, 'I',"stickWood");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(Swords.advancedNetherStarSword, 1),
+		RecipeHelper.addShapedRecipe(new ItemStack(Swords.advancedWoodenSword, 1), "XXX","XIX","XXX", 'X',"logWood", 'I',Items.WOODEN_SWORD);
+		RecipeHelper.addShapedRecipe(new ItemStack(Swords.advancedStoneSword, 1), "XXX","XIX","XXX", 'X',ACBlocks.advancedStone, 'I',Items.STONE_SWORD);
+		RecipeHelper.addShapedRecipe(new ItemStack(Swords.advancedIronSword, 1), "XXX","XIX","XXX", 'X',"blockIron", 'I',Items.IRON_SWORD);
+		RecipeHelper.addShapedRecipe(new ItemStack(Swords.advancedGoldenSword, 1), "XXX","XIX","XXX", 'X',"blockGold", 'I',Items.GOLDEN_SWORD);
+		RecipeHelper.addShapedRecipe(new ItemStack(Swords.advancedEmeraldSword, 1), "XXX","XIX","XXX", 'X',"blockEmerald", 'I',emeraldBase);
+		RecipeHelper.addShapedRecipe(new ItemStack(Swords.advancedDiamondSword, 1), "XXX","XIX","XXX", 'X',"blockDiamond", 'I',Items.DIAMOND_SWORD);
+		RecipeHelper.addShapedRecipe(new ItemStack(Swords.netherStarSword, 1), "X","X","I", 'X',Items.NETHER_STAR, 'I',"stickWood");
+		RecipeHelper.addShapedRecipe(new ItemStack(Swords.advancedNetherStarSword, 1),
 				" B ","ZIZ"," X ", 'X',"blockNetherStar", 'I',Swords.netherStarSword, 'Z',new ItemStack(Items.GOLDEN_APPLE, 1, 1), 'B',Blocks.BEACON);
 		
 		// upgrades (NEW!)
 		if(ACConfig.enableEnchantmentUpgrades) {
-			RecipeSorter.register(RefStrings.MODID + ":item_enchantment_upgrade", RecipeItemEnchantmentUpgrade.class, Category.SHAPED, "after:minecraft:shaped");
+			//RecipeSorter.register(RefStrings.MODID + ":item_enchantment_upgrade", RecipeItemEnchantmentUpgrade.class, Category.SHAPED, "after:minecraft:shaped");
 			for(Item upgrade : ACItems.getEnchantmentUpgrades()) addFlexibleUpgradeRecipe(upgrade);
 		}
 	
@@ -221,20 +216,20 @@ public class ACCraftingManager {
 	/** Adds a tier 1 recipe with 'I' set to paper */
 	private static void addTier1Recipe(Item result, Object... recipe) {
 		JointList rec = new JointList().join(recipe).join('I', Items.PAPER);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(result, 1, TIER_1), rec.toArray(new Object[recipe.length]));
+		RecipeHelper.addShapedRecipe(new ItemStack(result, 1, TIER_1), rec.toArray(new Object[recipe.length]));
 	}
 	
 	/** Adds a tier 2 recipe with 'A' set to the tier 1 result */
 	private static void addTier2Recipe(Item result, Object... recipe) {
 		JointList rec = new JointList().join(recipe).join('A', new ItemStack(result, 1, TIER_1));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(result, 1, TIER_2), rec.toArray(new Object[recipe.length]));
+		RecipeHelper.addShapedRecipe(new ItemStack(result, 1, TIER_2), rec.toArray(new Object[recipe.length]));
 	}
 	
 	/** Registers the tier 1 and tier 2 enchantment upgrade recipes for the specified item */
 	private static void addFlexibleUpgradeRecipe(Item upgrade) {
 		for(int i = 0; i < (((ItemEnchUpgrade)upgrade).getEnchantment().getMaxLevel() == 1 || 
 				upgrade instanceof ItemSingleUpgrade ? 1 : ItemEnchUpgrade.TIER_COUNT); i++) {
-			GameRegistry.addRecipe(new RecipeFlexibleUpgrade(new ItemStack(upgrade, 1, i)));
+			RecipeHelper.addRecipe(new RecipeFlexibleUpgrade(new ItemStack(upgrade, 1, i)));
 		}
 	}
 

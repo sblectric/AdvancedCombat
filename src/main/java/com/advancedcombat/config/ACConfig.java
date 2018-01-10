@@ -34,6 +34,9 @@ public class ACConfig {
 	public static boolean enableTrackingDispenser;
 	public static int trackingDispenserRange;
 	
+	// other
+	public static boolean enableCreativeSword;
+	
 	/** Do it up */
 	private static void getConfig() {
 		final String OPTIONS = config.CATEGORY_GENERAL;
@@ -59,6 +62,9 @@ public class ACConfig {
 		enableObsidianArmor = config.getBoolean("Obsidian Armor", OPTIONS, true, "");
 		enableTrackingDispenser = config.getBoolean("Tracking Dispenser", OPTIONS, true, "");
 		trackingDispenserRange = config.getInt("Tracking Dispenser Range", OPTIONS, 32, 8, 128, "");
+		
+		// other
+		enableCreativeSword = config.getBoolean("Creative Sword", OPTIONS, true, "");
 		
 		if(config.hasChanged()) config.save();
 	}
