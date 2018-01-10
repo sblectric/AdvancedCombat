@@ -5,9 +5,9 @@ import java.util.List;
 import com.advancedcombat.api.IItemAdvanced;
 import com.advancedcombat.api.ISwordAdvanced;
 import com.advancedcombat.config.ACConfig;
-import com.advancedcombat.creativetabs.ACCreativeTabs;
 import com.advancedcombat.registry.RegistryHelper;
 import com.advancedcombat.swords.SwordBasic;
+import com.advancedcombat.swords.SwordCreative;
 import com.advancedcombat.swords.SwordCustomRepair;
 import com.advancedcombat.swords.SwordShiny;
 import com.advancedcombat.util.JointList;
@@ -47,6 +47,7 @@ public class Swords {
 	public static SwordBasic advancedDiamondSword;
 	public static SwordBasic netherStarSword;
 	public static SwordBasic advancedNetherStarSword;
+	public static SwordBasic creativeSword;
 	public static ToolMaterial advancedWood;
 	public static ToolMaterial advancedStone;
 	public static ToolMaterial advancedIron;
@@ -55,6 +56,7 @@ public class Swords {
 	public static ToolMaterial advancedDiamond;
 	public static ToolMaterial netherStar;
 	public static ToolMaterial advancedNetherStar;
+	public static ToolMaterial creative;
 	
 	// thaumic stuff
 //	public static SwordThaumic advancedThaumiumSword;
@@ -79,6 +81,8 @@ public class Swords {
 		(netherStar = EnumHelper.addToolMaterial("netherStar", 4, 9366, 20.0F, 26.0F, 1)).setRepairItem(new ItemStack(Items.NETHER_STAR));
 		(advancedNetherStar = EnumHelper.addToolMaterial("advancedNetherStar", 5, 16384, 30.0F, 56.0F, 0)).setRepairItem(new ItemStack(ACBlocks.netherStarBlock));
 		
+		creative = EnumHelper.addToolMaterial("creative_", 1000, 1, 0, 0, 0);
+		
 		// thaumic materials
 //		advancedThaumium = EnumHelper.addToolMaterial("advancedThaumium", 3, 2250, 18.0F, 11.0F, 12);
 //		advancedElemental = EnumHelper.addToolMaterial("advancedElemental", 4, 6144, 24.0F, 22.0F, 8);
@@ -102,7 +106,9 @@ public class Swords {
 			advancedEmeraldSword = (SwordBasic)new SwordBasic(advancedEmerald).setRegistryName("advanced_emerald_sword"),
 			advancedDiamondSword = (SwordBasic)new SwordBasic(advancedDiamond).setRegistryName("advanced_diamond_sword"),
 			netherStarSword = (SwordBasic)new SwordShiny(netherStar).setRegistryName("nether_star_sword"),
-			advancedNetherStarSword = (SwordBasic)new SwordShiny(advancedNetherStar).setRegistryName("advanced_nether_star_sword")
+			advancedNetherStarSword = (SwordBasic)new SwordShiny(advancedNetherStar).setRegistryName("advanced_nether_star_sword"),
+			
+			creativeSword = (SwordBasic)new SwordCreative(creative).setRegistryName("creative_sword")
 			
 			// upgraded thaumcraft swords
 //			advancedThaumiumSword = (SwordThaumic)new SwordThaumic(advancedThaumium).setUnlocalizedName("advancedThaumiumSword"),
@@ -111,6 +117,7 @@ public class Swords {
 //			advancedCrimsonSword = (SwordThaumic)new SwordAdvancedCrimson(advancedCrimson).setUnlocalizedName("advancedCrimsonSword"),
 //			advancedPrimalSword = (SwordThaumic)new SwordAdvancedPrimal(advancedPrimal).setUnlocalizedName("advancedPrimalSword")
 		);
+		if(!ACConfig.enableCreativeSword) swords.remove(creativeSword);
 	}
 	
 	/** Register the swords with the game registry */

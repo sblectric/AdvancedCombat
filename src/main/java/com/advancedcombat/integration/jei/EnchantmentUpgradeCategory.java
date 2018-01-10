@@ -72,4 +72,9 @@ public class EnchantmentUpgradeCategory extends BlankRecipeCategory {
 		}
 	}
 
+	@Override
+	public String getModName() {
+		return RefStrings.NAME;
+	}
+
 }

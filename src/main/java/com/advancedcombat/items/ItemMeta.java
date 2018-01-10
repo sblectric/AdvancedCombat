@@ -1,5 +1,6 @@
 package com.advancedcombat.items;
 
+import com.advancedcombat.creativetabs.ACCreativeTabs;
 import com.advancedcombat.util.JointList;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
