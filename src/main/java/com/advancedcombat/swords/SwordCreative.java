@@ -3,7 +3,10 @@ package com.advancedcombat.swords;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
+<<<<<<< HEAD
 import net.minecraft.client.util.ITooltipFlag;
+=======
+>>>>>>> origin/master
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -46,18 +49,22 @@ public class SwordCreative extends SwordBasic {
     }
 	
 	@Override
+<<<<<<< HEAD
 	public boolean canDisableShield(ItemStack stack, ItemStack shield, EntityLivingBase entity, EntityLivingBase attacker) {
 		if(!(attacker instanceof EntityPlayer) || !((EntityPlayer)attacker).isCreative()) return super.canDisableShield(stack, shield, entity, attacker);
 		return true;
 	}
 	
 	@Override
+=======
+>>>>>>> origin/master
     public boolean canDestroyBlockInCreative(World world, BlockPos pos, ItemStack stack, EntityPlayer player) {
         return true;
     }
 	
 	@SideOnly(Side.CLIENT)
 	@Override
+<<<<<<< HEAD
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag advanced) {
 		try {
 			if(Minecraft.getMinecraft().player.isCreative()) {
@@ -66,6 +73,14 @@ public class SwordCreative extends SwordBasic {
 				tooltip.add("\u00A74Inactive");
 			}
 		} catch (Exception e) {}
+=======
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+		if(playerIn.isCreative()) {
+			tooltip.add("\u00A7aActive");
+		} else {
+			tooltip.add("\u00A74Inactive");
+		}
+>>>>>>> origin/master
     }
 	
 	@SideOnly(Side.CLIENT)
