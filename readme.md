@@ -1,4 +1,4 @@
-##Advanced Combat
+## Advanced Combat
 
 This mod provides extremely powerful swords along with more flexible item enchanting. From advanced wooden swords to the incredible advanced nether star sword, this mod is sure to quench your thirst for power.
 This mod also includes enchantment upgrades, which allow you to pick and choose enchantments for your tools and armor without needing an enchantment table or enchanted books. Simply craft the item with the upgrade and its enchantment level will go up by one.
