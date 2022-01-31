@@ -60,7 +60,7 @@ public class ItemBowAdvanced extends ItemBow implements IItemAdvanced {
 				}
 			}
 
-			return null;
+			return ItemStack.EMPTY;
 		}
 	}
 	
